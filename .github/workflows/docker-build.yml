@@ -43,9 +43,9 @@ jobs:
           # Note: tags has to be all lower-case
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-image-demo:latest 
-            ghcr.io/pritamworld/nodejs-image-demo:latest
+            ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/nodejs-image-demo:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/docker' }}
 
       - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${{ steps.buildx.outputs.digest }}
